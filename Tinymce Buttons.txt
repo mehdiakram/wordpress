@@ -1,0 +1,9 @@
+function tinymce_enable_more_buttons($buttons)
+{
+    $buttons[1] = 'fontselect';
+    $buttons[2] = 'fontsizeselect';
+    $buttons[3] = 'styleselect';
+    return $buttons;
+}
+ 
+add_filter("mce_buttons_3", "tinymce_enable_more_buttons");

@@ -1,0 +1,43 @@
+
+add_action( 'personal_options_update', 'save_custom_profile_fields' );
+add_action( 'edit_user_profile_update', 'save_custom_profile_fields' );
+function save_custom_profile_fields( $user_id ) {
+    update_user_meta( $user_id, 'bloodgroup', $_POST['bloodgroup'], get_user_meta( $user_id, 'bloodgroup', true ) );
+}
+  
+add_action( 'personal_options', 'add_profile_options');
+function add_profile_options( $profileuser ) {
+    $greeting = get_user_meta($profileuser->ID, 'bloodgroup', true);
+    ?>
+	
+	
+	
+	<tr>
+    <th scope="row">Include On Meet The Team Page?</th>
+    <td>
+    <select name="bloodgroup" id="bloodgroup" >
+        <option id="A+"<?php selected( $profileuser->bloodgroup, 'A+' ); ?>>A+</option>
+        <option id="B+"<?php selected( $profileuser->bloodgroup, 'B+' ); ?>>B+</option>
+        <option id="AB+"<?php selected( $profileuser->bloodgroup, 'AB+' ); ?>>AB+</option>
+        <option id="O+"<?php selected( $profileuser->bloodgroup, 'O+' ); ?>>O+</option>        
+		<option id="A-"<?php selected( $profileuser->bloodgroup, 'A-' ); ?>>A-</option>
+        <option id="B-"<?php selected( $profileuser->bloodgroup, 'B-' ); ?>>B-</option>
+        <option id="AB-"<?php selected( $profileuser->bloodgroup, 'AB-' ); ?>>AB-</option>
+        <option id="O-"<?php selected( $profileuser->bloodgroup, 'O-' ); ?>>O-</option>
+        
+    </select>
+    </td>
+    </tr>
+	
+	
+	<?php
+}
+ 
+ 
+ 
+ 
+/*
+	<?php 
+		echo 'Blood Group : '; the_author_meta('bloodgroup', $authorID);
+	?>	 
+*/

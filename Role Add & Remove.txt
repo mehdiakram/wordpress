@@ -1,0 +1,37 @@
+
+function royal_remove_role() {
+	remove_role( 'instructor' );
+    remove_role( 'editor' );
+    remove_role( 'author' );
+    remove_role( 'contributor' );
+    remove_role( 'subscriber' );
+}
+add_action( 'init', 'royal_remove_role' );
+
+
+
+
+
+/* Royal Add/Remove Role Start */
+
+function royal_add_role() {
+add_role('instructor', 'Instructor', 
+	array(
+		'read' => true,
+		'edit_posts' => true,
+		'edit_pages' => true,
+		'edit_others_posts' => true,
+		'create_posts' => true,
+		'manage_categories' => true,
+		'publish_posts' => true,
+		'edit_themes' => false,
+		'install_plugins' => false,
+		'update_plugin' => false,
+		'update_core' => false
+		)
+);
+// http://codex.wordpress.org/Roles_and_Capabilities
+}
+add_action( 'init', 'royal_add_role' );
+
+/* Royal Add Role End */

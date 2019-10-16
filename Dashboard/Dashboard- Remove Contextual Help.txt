@@ -1,0 +1,5 @@
+function royal_remove_contextual_help() {
+    $screen = get_current_screen();
+    $screen->remove_help_tabs();
+}
+add_action( 'admin_head', 'royal_remove_contextual_help' );

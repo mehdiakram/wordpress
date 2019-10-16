@@ -1,0 +1,15 @@
+﻿<?php if (  (function_exists('has_post_thumbnail')) && (has_post_thumbnail())) : ?>
+<?php the_post_thumbnail('thumbnail'); ?>
+<?php else :?>
+<img style="float:left;" src="<?php echo get_template_directory_uri(); ?>/images/<?php $category = get_the_category(); echo $category[0]->cat_name; ?>.jpg" /> 
+<?php endif;?>
+
+
+OR
+
+
+<?php if (  (function_exists('has_post_thumbnail')) && (has_post_thumbnail())) : ?>
+<?php the_post_thumbnail('thumbnail'); ?>
+<?php else :?>
+<img style="float:left;" src="<?php echo get_template_directory_uri(); ?>/images/default.jpg" /> 
+<?php endif;?>

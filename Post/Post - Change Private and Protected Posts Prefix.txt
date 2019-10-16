@@ -1,0 +1,10 @@
+function change_protected_title_prefix() {
+    return 'Family Only: %s';
+}
+add_filter('protected_title_format', 'change_protected_title_prefix');
+
+
+function change_private_title_prefix() {
+    return 'Editors Only: %s';
+}
+add_filter('private_title_format', 'change_private_title_prefix');

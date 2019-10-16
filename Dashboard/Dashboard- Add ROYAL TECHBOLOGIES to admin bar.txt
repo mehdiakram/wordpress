@@ -1,0 +1,130 @@
+/* 
+     
+* Add a simple menu & link that opens in a new window 
+     
+* Change the Menu 'title' name and 'href' link. 
+     
+*/ 
+
+
+function rt_admin_bar() {
+        
+global $wp_admin_bar;
+       
+
+	//Add a link called 'RT_Menu'
+
+        $wp_admin_bar->add_menu( array(
+
+            'id'    => 'RT_Menu',
+
+            'title' => '<img src="'.get_template_directory_uri(__FILE__).'/images/admin_logo.png"/>',
+
+            'href'  => 'http://www.royaltechbd.com/',
+
+	    'meta'  => array( target => '_blank' )
+        ));
+
+
+ 
+
+        //THEN add a sub-link called 'RoyalTechnologies'
+
+        $wp_admin_bar->add_menu( array(
+
+            'id'    => 'RoyalTechnologies',
+
+            'title' => 'Royal Technologies',
+
+            'href'  => 'http://www.royaltechbd.com',
+
+	    'meta'  => array( target => '_blank' ),
+            'parent'=>'RT_Menu'
+
+        ));
+
+
+        //THEN add a sub-link called 'twitter'
+
+        $wp_admin_bar->add_menu( array(
+
+            'id'    => 'blog',
+
+            'title' => 'Shamokal Darpon',
+
+            'href'  => 'http://www.shamokaldarpon.com',
+
+	    'meta'  => array( target => '_blank' ),
+            'parent'=>'RT_Menu'
+
+        ));
+
+
+
+        //THEN add a sub-link called 'facebook'
+
+        $wp_admin_bar->add_menu( array(
+
+            'id'    => 'facebook',
+
+            'title' => 'Mehdi Akram - Facebook',
+
+            'href'  => 'https://www.facebook.com/mehediakram',
+
+	    'meta'  => array( target => '_blank' ),
+            'parent'=>'RT_Menu'
+
+        ));
+
+
+
+
+        //THEN add a sub-link called 'twitter'
+
+        $wp_admin_bar->add_menu( array(
+
+            'id'    => 'twitter',
+
+            'title' => 'Mehdi Akram - Twitter',
+
+            'href'  => 'https://www.twitter.com/mehdiakram',
+
+	    'meta'  => array( target => '_blank' ),
+            'parent'=>'RT_Menu'
+
+        ));
+
+
+
+        //THEN add a sub-link called 'googleplus'
+
+        $wp_admin_bar->add_menu( array(
+
+            'id'    => 'googleplus',
+
+            'title' => 'Mehdi Akram - Google Plus',
+
+            'href'  => 'https://plus.google.com/u/0/111670173570585456902',
+
+	    'meta'  => array( target => '_blank' ),
+            'parent'=>'RT_Menu'
+
+        ));
+		
+    }
+
+    add_action( 'admin_bar_menu', 'rt_admin_bar', 10 ); 
+
+
+
+
+/* The add_action # is the menu position: 
+    
+10 = Before the WP Logo 
+    
+15 = Between the logo and My Sites 
+    
+25 = After the My Sites menu 
+    
+100 = End of menu 
+    */  

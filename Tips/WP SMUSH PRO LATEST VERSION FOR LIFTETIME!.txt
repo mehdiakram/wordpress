@@ -1,0 +1,11 @@
+WP SMUSH PRO LATEST VERSION FOR LIFTETIME!
+
+
+
+1/ Go to WP Repository and search for https://wordpress.org/plugins/wp-smushit/
+2/ Install WP Smush to Your WP Site
+3/ Go to WP Smush plugin installation folder
+4/ Go to "lib" folder
+5/ Open file "class-wp-smush.php" for editing
+6/ Search for "if ( empty( $api_key ) )"
+7/ This function returns false, so change to true. Thats All!!! IF You Happy Please Like This Post!

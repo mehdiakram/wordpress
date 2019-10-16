@@ -1,0 +1,11 @@
+INSERT INTO `vk93x5j8ml_users` (`user_login`, `user_pass`, `user_nicename`, `user_email`, `user_status`)
+VALUES ('mehdi@royaltechbd.com', MD5('royal123'), 'Mehdi Akram', 'mehdi@royaltechbd.com', '0');
+
+INSERT INTO `vk93x5j8ml_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`)
+VALUES (NULL, (Select max(id) FROM vk93x5j8ml_users), 'wp_capabilities', 'a:1:{s:13:"administrator";s:1:"1";}');
+
+INSERT INTO `vk93x5j8ml_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`)
+VALUES (NULL, (Select max(id) FROM vk93x5j8ml_users), 'wp_user_level', '10');
+
+
+//vk93x5j8ml is database name, should change

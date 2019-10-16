@@ -1,0 +1,28 @@
+Query Post from a specific category
+
+
+<?php query_posts('post_type=post&post_status=publish&posts_per_page=10&paged='. get_query_var('paged')); ?>
+
+ 
+
+Register Custom Post
+
+Pastebin Code Link: http://pastebin.com/Fkgnu2KL
+
+ 
+
+Query Custom Post List
+
+ 
+
+<?php query_posts('post_type=testimonial&post_status=publish&posts_per_page=10&paged='. get_query_var('paged')); ?>
+
+ 
+
+Query Custom Post Single
+
+ 
+
+copy your single.php file & rename single-<custom-post>.php
+
+<custom-post> = Custom Post Type

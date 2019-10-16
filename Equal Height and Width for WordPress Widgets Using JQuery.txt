@@ -1,0 +1,60 @@
+http://devilsworkshop.org/equal-height-width-wordpress-widgets-jquery/
+
+<script type="text/javascript">
+// to div's present in a parent div
+function rt_equalHeightWidth( group ) {
+
+// Get parent div width
+    var rt_group_width = group.width();
+
+// Get child div's
+    var rt_group_child = group.children();
+
+// Get size of child div present in the parent div
+    var rt_group_child_size = group.children().size();
+
+// Remove left padding from the first child div
+    rt_group_child.first().css( { 'padding-left': '0', 'margin-left': '0'} );
+
+// Remove right padding and right border from the last child div
+    rt_group_child.last().css( { 'border-right': '0', 'padding-right': '0', 'margin-right': '0' } );
+
+// Function to apply equal width for all child div's
+        rt_group_child.each( function() {
+// Calculate width for each child div
+            var rt_group_child_width = rt_group_width / rt_group_child_size;
+
+// Count extra padding and border width
+            var rt_extra_width = 
+			parseInt( jQuery( this ).css( 'padding-left' ) ) + 
+			parseInt( jQuery( this ).css( 'margin-left' ) ) + 
+			parseInt( jQuery( this ).css( 'padding-right'  ) ) + 
+			parseInt( jQuery( this ).css( 'margin-right'  ) ) + 
+			parseInt( jQuery( this ).css( 'border-right-width' )+ 
+			rt_group_child_size );
+
+// Remove extra padding and border width from width
+            var rt_group_child_actual_width = rt_group_child_width - rt_extra_width;
+
+// Apply actual width to each child div
+            jQuery( this ).css( { 'width' : rt_group_child_actual_width + 'px' } );
+        } );
+
+// Equal height for all child div's
+        var rt_height = 0;
+
+// Function to apply equal height for all child div's using jQuery each
+        rt_group_child.each( function() {
+
+// Get height for each widget
+            var thisHeight = jQuery( this ).height();
+
+// Get height for widget and apply equal height's to all widget
+            if ( thisHeight > rt_height ) { rt_height = thisHeight; }
+        } );
+        rt_group_child.height( rt_height );
+}
+
+// Apply parent selector by replacing '#sidebar_1' selector
+rt_equalHeightWidth( jQuery( '.footer_widgets' ) );
+</script>

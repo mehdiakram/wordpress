@@ -1,0 +1,67 @@
+/* PostViews START */
+
+function rt_set_post_views($postID) {
+    $count_key = 'rt_post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+//To keep the count accurate, lets get rid of prefetching
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
+
+
+function rt_track_post_views ($post_id) {
+    if ( !is_single() ) return;
+    if ( empty ( $post_id) ) {
+        global $post;
+        $post_id = $post->ID;    
+    }
+    rt_set_post_views($post_id);
+}
+add_action( 'wp_head', 'rt_track_post_views');
+
+
+
+function rt_get_post_views($postID){
+    $count_key = 'rt_post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0 View";
+    }
+    return $count.' Views';
+}
+
+/* PostViews END *
+
+
+
+
+
+
+/******* wp_query post_met
+<?php $loop = new WP_Query( array(
+'post_type' => 'post', 
+'meta_key' => 'rt_post_views_count',
+'orderby' => 'meta_value_num',
+'showposts' =>5,  
+'order' => 'DESC' ) ); ?>	   
+<?php if ($loop->have_posts()) : while ($loop->have_posts()) : $loop->the_post(); ?>
+<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li> 
+<?php
+endwhile; endif;
+wp_reset_query();
+?> 
+*******/
+
+/********** post loop
+rt_get_post_views(get_the_ID());
+**********/

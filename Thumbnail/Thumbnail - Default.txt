@@ -1,0 +1,6 @@
+<?php
+if ( has_post_thumbnail() ) {
+	 the_post_thumbnail('thumbnail', array('class' => 'tvlogo', 'alt' => ''));
+	 } else {
+	 echo "<img src='" . get_bloginfo('template_directory') ."/images/tvlogo.jpg' alt='".get_the_title()."' title='".get_the_title()."' class='tvlogo' />"; }
+?>

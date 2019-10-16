@@ -1,0 +1,7 @@
+﻿function maxWord($title){
+    global $post;
+    $title = $post->post_title;
+    if (str_word_count($title) >= 5 ) //set this to the maximum number of words
+        wp_die( __('Error: your post title is over the maximum word count.') );
+}
+add_action('publish_post', 'maxWord');

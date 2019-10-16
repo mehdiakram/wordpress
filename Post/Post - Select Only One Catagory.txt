@@ -1,0 +1,22 @@
+/*
+FOR 
+function.php
+============
+*/
+
+/*
+Select Only One Catagory for Post
+by Mehdi Akram
+*/
+if(
+	strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') ||
+	strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php')
+
+	)
+{
+ob_start('royal_select_one_category_only');
+}
+function royal_select_one_category_only($content) {
+$content = str_replace('type="checkbox" ', 'type="radio" ', $content);
+return $content;
+}

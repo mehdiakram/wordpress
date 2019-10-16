@@ -1,0 +1,6 @@
+<li id="pages" style="list-style:none;">
+<form action="<?php bloginfo('url'); ?>" method="get">
+<?php wp_dropdown_pages(); ?>
+<input type="submit" name="submit" value="view" />
+</form>
+</li>

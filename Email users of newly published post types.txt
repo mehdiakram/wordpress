@@ -1,0 +1,30 @@
+function notify_teachers($post_ID)  {
+	// a conditional to check that this is a new post
+	if( ( $_POST['post_status'] == 'publish' ) && ( $_POST['original_post_status'] != 'publish' ) ) {
+		// get all users email addresses
+		$wp_user_search = new WP_User_Query( array( 'fields' => array('user_email') ) );
+		$usersarray = $wp_user_search->get_results();
+		$arrUsers = array();
+		// store each email for later use
+		for ($arr = $usersarray, $mU = count($arr), $iU = 0; $iU < $mU; $iU++) {
+			$arrUsers[] = $arr[$iU]->user_email;
+		}
+		// create the from details 
+		$headers[] = 'From: Deputy Head <dephead@example.net>';
+		// lets cc in the head just because we can 
+		$headers[] = 'Cc: The Head <thehead@example.net>';
+		// separate the users array
+		$users = implode(",", $arrUsers);
+		// concatenate a message together
+		$message = 'A new lesson has been opened for your review on the site ' . get_bloginfo('siteurl') . "\r\n\r\n";
+		$message .= 'You can review it now at ' . get_permalink($post_ID) . "\r\n\r\n";
+		$message .= 'Feel free to leave a comment and any suggestions.' . "\r\n\r\n";
+		$message .= 'Deputy Head.';
+		// and finally send the email
+		wp_mail($users, "Lesson Notice: "  . $_POST['post_title'] , $message, $headers );
+	    return $post_ID;
+    }
+}
+// hook on to the custom post type by using 'publish_lesson' if custom post type name 'lesson'
+add_action('publish_lesson', 'notify_teachers');
+

@@ -1,0 +1,48 @@
+/*
+Theme Name: Royal Theme Name
+Theme URI: http://royaltradebd.com
+Author: SM Mehdi Akram
+Author URI: http://shamokaldarpon.com
+Description: Custom University Theme
+Version: 2014.04.05
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+*{margin:0; padding:0;}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video 
+{margin: 0;	padding: 0;	border: 0;	font-size: 100%; font: inherit;	vertical-align: baseline;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {	display: block;}
+body {line-height: 1;}
+ol, ul , li{list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {content: ''; content: none;}
+table {border-collapse: collapse;	border-spacing: 0;}
+a:hover, a:active, a:focus {text-decoration: none;}
+a img {border: none;}
+img {margin: 0;	padding: 0;}
+
+
+
+body {}
+
+
+
+/* Miscellaneous */
+#wp-calendar {width: 100%; cursor: pointer;}
+#wp-calendar caption {font-weight: bold; padding-bottom: 10px;}
+#wp-calendar td, th {border: 1px solid #CCCCCC;text-align: center;height:32px;}
+#wp-calendar td:hover{background: #c0c08e;color: #000;}
+#wp-calendar #today, #wp-calendar #today a {background: #c0c08e;color: #000;font-weight:bold;}
+.not_found h1{font-size: 85px;line-height: 90px;text-align: center;text-shadow: 3px 6px 5px #000;}
+.not_found p{font-size: 30px;line-height: 35px;margin-top: 25px;text-align: center;text-shadow: 1px 1px 1px #000;}
+
+
+/* Pager Nav */
+.pager_nav {clear: both;  font-weight: bold;  margin: 30px 0;  padding-top: 3px;  position: relative;}
+.pager_nav .previous a, .pager_nav .next a, .pager_nav .previous span, .pager_nav .next span {background: url("images/bg_direction_nav.png") no-repeat scroll 0 0 transparent;  cursor: pointer;  display: block;  float: left;  font-size: 0;  height: 20px;  line-height: 0;  margin: 0;  position: absolute;  right: 20px;  top: 0;  width: 20px;}
+.pager_nav .next a, .pager_nav .next span { background-position: 100% 0;  right: 0;}
+.pager_nav a, .pager_nav a:visited {  color: #7E7E7E;  margin: 0 5px 0 2px;}
+.page-numbers {  background: #CCC;  border-radius: 100px;  padding: 2px 6px;}

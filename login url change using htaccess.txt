@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^logout wp-login.php?action=logout&_wpnonce=asdfasdf&stealth_out_key=asdfasdfasdfasdf [L]
+RewriteRule ^login wp-login.php?stealth_in_key=asdfasdfasdf&redirect_to=http://example.com/login [R,L]
+RewriteRule ^admin wp-admin/?stealth_admin_key=asdfasdfasdfasdf [R,L]
+RewriteCond %{HTTP_REFERER} !^http://example.com/wp-admin
+RewriteCond %{HTTP_REFERER} !^http://example.com/wp-login\.php
+RewriteCond %{HTTP_REFERER} !^http://example.com/login
+RewriteCond %{HTTP_REFERER} !^http://example.com/admin
+RewriteCond %{QUERY_STRING} !^stealth_in_key=asdfasdfasdfasdf
+RewriteCond %{QUERY_STRING} !^stealth_out_key=asdfasdfasdfasdfasd
+RewriteCond %{QUERY_STRING} !^stealth_reg_key=asdfasdfasdfasdfasdf
+RewriteCond %{QUERY_STRING} !^stealth_admin_key=asdfasdfasdfasdfasdf
+RewriteRule ^wp-login\.php http://example.com [R,L]
+RewriteCond %{QUERY_STRING} ^loggedout=true
+RewriteRule ^wp-login\.php http://example.com [R,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>

@@ -1,0 +1,65 @@
+Usage
+get_user_meta($user_id, 'user_country', true);
+get_user_meta($user_id, 'user_gender', true);
+get_user_meta($user_id, 'user_cell', true);
+===================================================
+
+function custom_user_profile_fields($user) {
+    global $neu_utility;
+    $country = esc_attr(get_the_author_meta('user_country', $user->ID));
+    $cell = esc_attr(get_the_author_meta('user_cell', $user->ID));
+    $gender= esc_attr(get_the_author_meta('user_gender', $user->ID));
+    
+    ?>
+    <h3><?php _e('Extra User Fields', 'your_domain'); ?></h3>
+    <table class="form-table">
+        <tr>
+            <th>
+                <label for="user_country"><?php _e('Country', 'your_domain'); ?>
+                </label></th>
+            <td>
+                <select name="user_country" id="user_country" >
+                    <option value="United States" <?=($country=='United States') ? 'selected="selected"':''?> >United States</option>
+                    <option value="UK" <?=($country=='UK') ? 'selected="selected"':''?> >United Kingdom</option>
+                    <option value="Canada" <?=($country=='Canada') ? 'selected="selected"':''?> >Canada</option>
+                    <option value="Australia" <?=($country=='Australia') ? 'selected="selected"':''?> >Australia</option>
+                    <option value="Germany" <?=($country=='Germany') ? 'selected="selected"':''?> >Germany</option>
+                </select>
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="user_gender"><?php _e('Gender', 'your_domain'); ?>
+                </label></th>
+            <td>
+                <input type="radio" name="user_gender" value="Male" <?=($gender=='Male') ? 'checked="checked"':''?> >Male<br/>
+                <input type="radio" name="user_gender" value="Female" <?=($gender=='Female') ? 'checked="checked"':''?> >Female
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="user_cell"><?php _e('Cell Number', 'your_domain'); ?>
+                </label></th>
+            <td>
+                <input type="text" name="user_cell" id="user_city" value="<?=$cell ?>" class="regular-text">
+                <br />
+            </td>
+        </tr>
+    </table>
+<?php
+}
+
+function save_custom_user_profile_fields($user_id) {
+    if (!current_user_can('edit_user', $user_id))
+        return FALSE;
+    update_usermeta($user_id, 'user_country', $_POST['user_country']);
+    update_usermeta($user_id, 'user_gender', $_POST['user_gender']);
+    update_usermeta($user_id, 'user_cell', $_POST['user_cell']);
+}
+
+add_action('show_user_profile', 'custom_user_profile_fields');
+add_action('edit_user_profile', 'custom_user_profile_fields');
+add_action('personal_options_update', 'save_custom_user_profile_fields');
+add_action('edit_user_profile_update', 'save_custom_user_profile_fields');

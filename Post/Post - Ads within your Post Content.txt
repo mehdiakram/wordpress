@@ -1,0 +1,13 @@
+/*Ads within your Post Content*/
+
+/*Replace <?php the_content(); ?> with bellow code*/
+<?php
+$paragraphAfter= 3; //display after the first paragraph
+$content = apply_filters('the_content', get_the_content());
+$content = explode("</p>", $content);
+for ($i = 0; $i <count($content); $i++ ) {
+if ($i == $paragraphAfter) { ?>
+<div>Insert Ads Here</div>
+<?php }
+echo $content[$i] . "</p>";
+} ?>

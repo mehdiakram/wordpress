@@ -1,0 +1,18 @@
+function wpr_snap($atts, $content = null) {
+        extract(shortcode_atts(array(
+			"snap" => 'http://s.wordpress.com/mshots/v1/',
+			"url" => 'http://www.shamokaldarpon.com',
+			"alt" => 'My image',
+			"w" => '400', // width
+			"h" => '300' // height
+        ), $atts));
+
+	$img = '<img src="' . $snap . '' . urlencode($url) . '?w=' . $w . '&h=' . $h . '" alt="' . $alt . '"/>';
+        return $img;
+}
+
+add_shortcode("snap", "wpr_snap");
+
+
+
+[snap url="http://royaltechbd.com/" alt="My description" w="400" h="300"]

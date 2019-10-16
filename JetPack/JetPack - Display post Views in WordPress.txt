@@ -1,0 +1,19 @@
+functions.php
+///////////////
+
+function render_stats($post_id) {
+    $args = array(
+    'days'=>-1,
+    'limit'=>-1,
+    'post_id'=>$post_id
+    );
+     
+    $result = stats_get_csv('postviews', $args);
+ 
+    $views = $result[0]['views'];
+    return number_format_i18n($views);
+}
+
+
+///////////////
+echo render_stats($post->ID);

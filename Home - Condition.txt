@@ -1,0 +1,13 @@
+<?php if ( is_front_page() or is_home() ) {	?>   
+
+	<!-- This is a homepage Start -->
+
+	<!-- This is a homepage End -->
+	
+	<?php } else { ?>
+
+    <!-- This is not a homepage Start -->
+
+	<!-- This is not a homepage End -->
+	
+<?php } ?>  

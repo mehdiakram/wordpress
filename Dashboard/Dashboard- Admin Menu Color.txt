@@ -1,0 +1,34 @@
+
+/* Dashboard Admin Menu Color */
+add_action('admin_head', 'my_custom_admin_style');
+
+function my_custom_admin_style() {
+echo '
+<style type="text/css">
+#header-logo { background-image: url('.get_bloginfo('template_directory').'/images/logo.png) !important; }
+
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu, 
+#adminmenu li.current a.menu-top, 
+#adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head 
+{
+border-bottom-color: #851212;
+border-top-color: #F42D2D;
+}
+
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+#adminmenu li.current a.menu-top,.folded 
+#adminmenu li.wp-has-current-submenu,.folded 
+#adminmenu li.current.menu-top,
+#adminmenu .wp-menu-arrow,
+#adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head{
+background-image:-ms-linear-gradient(bottom,#851212,#F42D2D);
+background-image:-moz-linear-gradient(bottom,#851212,#F42D2D);
+background-image:-o-linear-gradient(bottom,#851212,#F42D2D);
+background-image:-webkit-gradient(linear,left bottom,left top,from(#851212),to(#F42D2D));
+background-image:-webkit-linear-gradient(bottom,#851212,#F42D2D);
+background-image:linear-gradient(bottom,#851212,#F42D2D);}
+
+#adminmenu a {color:#F42D2D; }
+</style>
+';
+}

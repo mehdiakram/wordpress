@@ -1,0 +1,28 @@
+function.php
+=======================================
+
+
+// Add CSS class to menus for submenu indicator
+ class Royal_Navigation_Walker extends Walker_Nav_Menu {
+    function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
+        $id_field = $this->db_fields['id'];
+        if ( !empty( $children_elements[ $element->$id_field ] ) ) {
+            $element->classes[] = 'royal-menu-item-parent';
+        }
+        Walker_Nav_Menu::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
+    }
+}
+
+
+
+
+header.php (Menu)
+=======================================
+<?php wp_nav_menu( array( 'theme_location' => 'vermenu', 'menu_class' => 'vermenu', 'fallback_cb'=> false, 'walker' => new Royal_Navigation_Walker) ); ?>
+
+
+
+style.css
+=======================================
+.royal-menu-item-parent > a:after {content: ' »';}
+.sub-menu .royal-menu-item-parent > a:after {content: ' »';}

@@ -1,0 +1,25 @@
+
+/* Repalce Text */
+function replace_text_wps($text){  
+	$replace = array(  
+	// 'WORD TO REPLACE' => 'REPLACE WORD WITH THIS'  
+    'facebook' => '<a href="category/facebook">facebook</a>', 
+    'Facebook' => '<a href="category/facebook">Facebook</a>', 
+    'windows-8' => '<a href="category/facebook">windows-8</a>',   
+    'windows-7' => '<a href="category/facebook">windows-7</a>',   
+    'windows-xp' => '<a href="category/facebook">windows-xp</a>',   
+    'windows-vista' => '<a href="category/facebook">windows-vista</a>',   
+    'twitter' => '<a href="category/facebook">twitter</a>',   
+    'website' => '<a href="category/facebook">website</a>',   
+    'google' => '<a href="category/facebook">google</a>',  
+    'gmail' => '<a href="category/facebook">gmail</a>',   
+    'google' => '<a href="category/facebook">google</a>',   
+    'google' => '<a href="category/facebook">google</a>',   
+    'google' => '<a href="category/facebook">google</a>'   
+	);  
+	$text = str_replace(array_keys($replace), $replace, $text);  
+	return $text;  
+}  
+  
+add_filter('the_content', 'replace_text_wps');  
+add_filter('the_excerpt', 'replace_text_wps');  

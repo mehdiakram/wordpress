@@ -1,0 +1,53 @@
+
+<?php if ( is_page('about-us') || is_page('running-coaches') || is_page('420') || is_page('contact-thank-you') || is_page('568') ) {
+
+	get_sidebar('about');
+
+} elseif
+
+( is_page(array('6037','6041','567','6032'))) {
+
+	get_sidebar('about-training');
+
+} elseif
+
+ ( is_page('43')) {
+
+	get_sidebar('chat');
+
+} elseif
+
+
+
+ ( is_page('about-jhu')) {
+
+	get_sidebar('jhu');
+
+
+} elseif
+
+
+
+ ( is_page('testimonial') || is_page('case-studies')) {
+
+	get_sidebar('testimonials');
+
+} elseif
+
+
+ ( is_page(array('113','27'))) {
+
+	get_sidebar('contests');
+
+} elseif
+
+
+ ( is_page(array('2847','2850','3842','2612','5038', '5312'))) {
+
+	get_sidebar('free-trial');
+
+} else {
+
+	get_sidebar('page'); ?>
+
+<?php } ?>

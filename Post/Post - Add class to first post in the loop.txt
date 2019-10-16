@@ -1,0 +1,9 @@
+/*Add class to first post in the loop*/
+
+add_filter( 'post_class', 'first_post_class' );
+function first_post_class( $classes ) {
+    global $wp_query;
+    if( 0 == $wp_query->current_post )
+        $classes[] = 'first-post';
+        return $classes;
+}

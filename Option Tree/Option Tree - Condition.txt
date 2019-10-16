@@ -1,0 +1,82 @@
+  $royal_theme_page_meta_box = array(
+    'id'          => 'page_meta_box',
+    'title'       => __( 'Home Page Information', 'royal_theme' ),
+    'desc'        => '',
+    'pages'       => array( 'page' ),
+    'context'     => 'normal',
+    'priority'    => 'high',
+    'fields'      => array(
+      array(
+        'label'       => __( 'Show in homepage', 'royal_theme' ),
+        'id'          => 'show_homepage',
+        'type'        => 'on-off',
+        'std'         => 'off'
+      ),	
+      array(
+        'label'       => __( 'Page background', 'royal_theme' ),
+        'id'          => 'page_background',
+        'type'        => 'radio',
+        'std'         => 'image',
+        'choices'     => array( 
+          array(
+            'value'       => 'color',
+            'label'       => __( 'Color', 'theme-text-domain' ),
+            'src'         => ''
+          ),
+          array(
+            'value'       => 'image',
+            'label'       => __( 'Image', 'theme-text-domain' ),
+            'src'         => ''
+          )
+        ),	
+		'condition'   => 'show_homepage:is(on)'
+      ),		
+      array(
+        'label'       => __( 'Page background color', 'royal_theme' ),
+        'id'          => 'page_back_color',
+		'std'         => '#F9C31E',
+        'type'        => 'colorpicker',
+		'condition'   => 'show_homepage:is(on),page_background:is(color)'
+      ), 
+      array(
+        'label'       => __( 'Page background image', 'royal_theme' ),
+        'id'          => 'page_back_image',
+        'type'        => 'upload',
+		'condition'   => 'show_homepage:is(on),page_background:is(image)'
+      ),  	  
+      array(
+        'label'       => __( 'Page title text color', 'royal_theme' ),
+        'id'          => 'text_color',
+        'type'        => 'colorpicker',
+		'condition'   => 'show_homepage:is(on)'
+      ),
+      array(
+        'label'       => __( 'Title show in homepage', 'royal_theme' ),
+        'id'          => 'show_title',
+        'type'        => 'on-off',
+        'std'         => 'on',
+		'condition'   => 'show_homepage:is(on)'
+      ),
+      array(
+        'id'          => 'minimum_height',
+        'label'       => __( 'Minimum Height', 'royal_theme' ),
+        'std'         => '',
+        'type'        => 'numeric-slider',
+        'min_max_step'=> '300,800,10',
+        'condition'   => 'show_homepage:is(on)'
+      ),	  
+    )
+  );
+  
+  
+  
+  
+  
+  
+  
+  
+  
+====================== Usges
+<?php if ( ot_get_option('show_homepage') != "off" ) { ?>
+ 
+<?php } ?>

@@ -1,0 +1,34 @@
+﻿function.php
+========================================================
+
+/* Start Enable Thumbnail image */
+add_theme_support( 'post-thumbnails' );
+add_theme_support( 'post-thumbnails', array( 'post' ) ); // Add it for posts
+add_theme_support( 'post-thumbnails', array( 'page' ) ); // Add it for pages
+
+set_post_thumbnail_size( 200, 200, true ); // 50 pixels wide by 50 pixels tall, hard crop mode
+অথবা
+set_post_thumbnail_size( 200, 200 ); // 50 pixels wide by 50 pixels tall, box resize mode
+
+
+add_image_size( 'post-image', 100, 100, true );
+add_image_size( 'featured-post-image', 150, 150, true );
+/* End Enable featured image */
+
+
+
+
+
+add_theme_support( 'post-thumbnails' );
+
+// This adds support for pages only:
+add_theme_support( 'post-thumbnails', array( 'page' ) );
+
+// And this adds support for posts only:
+add_theme_support( 'post-thumbnails', array( 'post' ) );
+
+// To get the thumbnail in your post, you add the following inside the loop:
+if ( has_post_thumbnail() ) {
+	set_post_thumbnail_size( 400, 150 ); # width, height #
+	the_post_thumbnail();
+}

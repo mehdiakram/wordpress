@@ -1,0 +1,18 @@
+add_action('wp_logout','logout_redirect_home');
+function logout_redirect_home(){
+  wp_redirect( home_url() );
+  exit();
+}
+
+
+
+
+
+
+
+
+add_action('wp_logout','logout_redirect_external');
+function logout_redirect_external(){
+  wp_redirect( 'http://www.shamokaldarpon.com' );
+  exit();
+}

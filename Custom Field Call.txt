@@ -1,0 +1,31 @@
+Display Custom Field Data
+=============================
+<?php $key="url"; echo get_post_meta($post->ID, $key, true);?>
+
+
+
+Display Custom Field Data if Exists
+=============================
+<?php 
+$image = get_post_meta($post->ID, 'url', true);
+
+
+if($image) : ?>
+
+
+<img src="<?php echo $image; ?>" alt="" />
+
+
+<?php endif; 
+?>
+
+
+Conditional Custom Field
+=============================
+<?php $date = get_post_meta($post->ID, 'date', true);
+if ($date) { ?>
+<?php echo $date; ?> (Events)
+<?php }
+else { ?>
+<?php the_time('M d, Y'); ?>
+<?php } ?>

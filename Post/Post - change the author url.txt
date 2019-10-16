@@ -1,0 +1,6 @@
+add_action('init', 'change_wordpress_author_url');
+function change_wordpress_author_url() {
+global $wp_rewrite;
+$author_slug = 'new_author_url';
+$wp_rewrite->author_base = $author_slug;
+}

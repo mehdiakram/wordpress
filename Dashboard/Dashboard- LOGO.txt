@@ -1,0 +1,20 @@
+/* Dashboard Logo */
+function dashboard_logo() {
+echo '<style type="text/css">
+#wp-admin-bar-wp-logo > .ab-item .ab-icon
+{
+background-image: url('.get_bloginfo('template_directory').'/images/dashboard_logo.png) !important;
+background-repeat: no-repeat;
+background-position: 0 0px;
+height: 20px;
+margin-top: 4px;
+width: 119px;
+}
+
+#wpadminbar.nojs #wp-admin-bar-wp-logo:hover > .ab-item .ab-icon, #wpadminbar #wp-admin-bar-wp-logo.hover > .ab-item .ab-icon
+{
+background-position: 0 0px;
+}
+</style>';
+}
+add_action('wp_before_admin_bar_render', 'dashboard_logo');

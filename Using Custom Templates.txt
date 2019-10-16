@@ -1,0 +1,13 @@
+Using Custom Templates
+
+ 
+
+<?php
+
+/*
+
+ * Template Name: Custom Template Name
+
+ */
+
+get_header(); ?>

@@ -1,0 +1,121 @@
+>>>>>>>>>>>>>>>>>
+
+	array(
+		'id'          => 'social_list',
+		'label'       => __( 'Social List', 'royal_theme' ),
+		'desc'        => __( 'Add your social links!!' , 'royal_theme'),
+		'std'         => '',
+		'type'        => 'list-item',
+		'section'     => 'general',
+		'rows'        => '',
+		'post_type'   => '',
+		'taxonomy'    => '',
+		'min_max_step'=> '',
+		'class'       => '',
+		'condition'   => '',
+		'operator'    => 'and',
+		'settings'    => array(
+					array(
+						'id'          => 'social_icon_fontawesome5',
+						'label'       => __( 'Select Social Icon', 'royal_theme' ),
+						'desc'        => __( 'Select Sociil Icon (It use Font Awesome 5)', 'royal_theme' ),
+						'type'        => 'select',
+						'choices'     => array( 
+								array(
+									'value'       => 'fab fa-facebook',
+									'label'       => __( 'Facebook', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-facebook F',
+									'label'       => __( 'Facebook-f', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-facebook-square',
+									'label'       => __( 'Facebook Square', 'royal_theme' ),
+								),								
+								array(
+									'value'       => 'fab fa-facebook-messenger',
+									'label'       => __( 'Facebook Messenger', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-twitter',
+									'label'       => __( 'Twitter', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-twitter-square',
+									'label'       => __( 'Twitter Square', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-google-plus',
+									'label'       => __( 'google-plus', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-google-plus-g',
+									'label'       => __( 'google-plus-g', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-google-plus-square',
+									'label'       => __( 'google-plus-square', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-google',
+									'label'       => __( 'google', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-google-wallet',
+									'label'       => __( 'google-wallet', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-google-play',
+									'label'       => __( 'google-play', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-linkedin',
+									'label'       => __( 'Linkedin', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-linkedin-in',
+									'label'       => __( 'linkedin In', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-line',
+									'label'       => __( 'Line', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-youtube',
+									'label'       => __( 'Youtube', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fab fa-youtube-square',
+									'label'       => __( 'Youtube Square', 'royal_theme' ),
+								),
+								array(
+									'value'       => 'fas fa-at',
+									'label'       => __( 'At', 'royal_theme' ),
+								)
+							)
+					),		
+					array(
+						'id'        => 'social_link',
+						'label'        => 'Social Full Link',
+						'std'        	=> '',
+						'type'        => 'text',
+					),
+ 				)
+	),  
+>>>>>>>>>>>>>>>>>>>>>
+
+
+>>>>>>>>>>>>>>>>>>>>>
+						    <ul class="pull-right">					
+							<?php
+							if (function_exists('ot_get_option')) {
+								$list_item = ot_get_option( 'social_list', array() );
+								if ( !empty( $list_item ) ) {
+									foreach( $list_item as $link ) {
+									echo'<li><a href="' . $link['social_link'] . '" target="_blank" class="' . $link['social_icon_fontawesome5'] .'"></a></li>';
+									}
+								}
+							}
+							?>	
+>>>>>>>>>>>>>>>>>>>>>

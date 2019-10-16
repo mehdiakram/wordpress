@@ -1,0 +1,7 @@
+<?php 
+if (  (function_exists('has_post_thumbnail')) && (has_post_thumbnail())  ) { 
+  the_post_thumbnail('post-image', array('class' => 'postimage', 'alt' => ''));
+} else { 
+?>
+  <img src="<?php bloginfo('template_directory'); ?>/images/<?php foreach(get_the_category() as $category) { echo $category->slug . '';} ?>.jpg" class="postimage" alt="" /> 
+<?php } ?>

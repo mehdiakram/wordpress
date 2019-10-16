@@ -1,0 +1,24 @@
+
+function rt_user_profile( $contactmethods ) {
+	// Add Extra Field in Profiles
+	$contactmethods['google_profile'] = 'Google Profile URL';
+	$contactmethods['linkedin_profile'] = 'LinkedIn Profile URL';
+	$contactmethods['twitter'] = 'Twitter URL';
+	$contactmethods['facebook'] = 'Facebook Page';
+	$contactmethods['blooggroup'] = 'Blood Group';
+	
+	// Remove annoying and unwanted default fields
+	unset($contactmethods['aim']);
+	unset($contactmethods['jabber']);
+	unset($contactmethods['yim']);
+
+	return $contactmethods;
+}
+add_filter( 'user_contactmethods', 'rt_user_profile', 10, 1);
+
+/*
+					<?php 
+						echo 'Blood Group : ';
+						echo get_user_meta(1, 'blooggroup', true);
+					?>	
+*/  

@@ -1,0 +1,6 @@
+/* Includes all files from the "includes" directory.*/
+
+	$include_files = glob(dirname(__FILE__) . "/includes/*.php");
+	foreach($include_files as $include_file) {
+		include($include_file);
+	}

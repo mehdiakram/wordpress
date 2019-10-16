@@ -1,0 +1,11 @@
+/* Rename Dashboard Menu Name */
+function rename_admin_menu_items( $menu ) {
+// $menu = str_ireplace( 'original name', 'new name', $menu );
+$menu = str_ireplace( 'Dashboard', 'Home', $menu );
+$menu = str_ireplace( 'Posts', 'Recipy', $menu );
+$menu = str_ireplace( 'Dashboard', 'Home', $menu );
+// return $menu array
+return $menu;
+}
+add_filter('gettext', 'rename_admin_menu_items');
+add_filter('ngettext', 'rename_admin_menu_items');

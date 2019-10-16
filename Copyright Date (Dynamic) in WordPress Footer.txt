@@ -1,0 +1,32 @@
+/* Dynamic Copyright Date Start */	
+function royaltechbd_copyright() {
+global $wpdb;
+$copyright_dates = $wpdb->get_results("
+SELECT
+YEAR(min(post_date_gmt)) AS firstdate,
+YEAR(max(post_date_gmt)) AS lastdate
+FROM
+$wpdb->posts
+WHERE
+post_status = 'publish'
+");
+
+
+$output = '';
+if($copyright_dates) {
+$copyright = "&copy; " . date_i18n($copyright_dates[0]->firstdate);
+if($copyright_dates[0]->firstdate != $copyright_dates[0]->lastdate) {
+$copyright .= '-' . date_i18n($copyright_dates[0]->lastdate);
+}
+$output = $copyright;
+}
+return $output;
+}
+/* Dynamic Copyright Date End */
+
+
+	
+
+================== Output
+<?php echo royaltechbd_copyright(); ?><?php bloginfo('name'); ?>, All Rights Reserved.
+==================

@@ -1,0 +1,35 @@
+
+/* This code for Dashboard Logo */
+function my_dashboard_logo() {
+echo '<style type="text/css">
+#header-logo { background-image: url('.get_bloginfo('template_directory').'/images/custom-login-logo.png) !important; 
+ width:30px; height:30px;
+}
+</style>';
+}
+add_action('admin_head', 'my_dashboard_logo');
+
+
+/* This code for Login Logo */
+function my_custom_login_logo() {
+    echo '<style type="text/css">
+        h1 a { background-image:url('.get_bloginfo('template_directory').'/images/custom-login-logo.png) !important; }
+    </style>';
+}
+add_action('login_head', 'my_custom_login_logo');
+
+
+
+/* This code for Login URL */
+function my_custom_login_url() {
+return site_url();
+}
+add_filter( 'login_headerurl', 'my_custom_login_url', 10, 4 );
+
+
+/* This code for Login Title Text */
+function login_header_title()
+{
+return get_bloginfo('name');
+}
+add_filter('login_headertitle','login_header_title');

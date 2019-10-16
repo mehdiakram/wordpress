@@ -1,0 +1,6 @@
+function viewport_meta() {
+    ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <?php
+}
+add_filter('wp_head', 'viewport_meta');

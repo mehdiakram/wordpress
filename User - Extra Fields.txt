@@ -1,0 +1,93 @@
+
+add_action( 'show_user_profile', 'add_extra_social_links' );
+add_action( 'edit_user_profile', 'add_extra_social_links' );
+
+function add_extra_social_links( $user )
+{
+    ?>
+        <h3>Card Information</h3>
+        <table class="form-table">
+    <tr>
+        <th><label for="dropdown">Card Type</label></th>
+        <td>
+            <?php $selected = get_the_author_meta( 'card_type', $user->ID ); ?>
+            <select name="card_type" id="card_type" >
+                <option value="silver" <?php echo ($selected == "silver")?  'selected="selected"' : '' ?>>Silver Card</option>
+                <option value="gold" <?php echo ($selected == "gold")?  'selected="selected"' : '' ?>>Gold Card</option>
+			</select>
+        </td>
+    </tr>		
+            <tr>
+                <th><label for="member_card">Member Card</label></th>
+                <td><input type="text" name="member_card" value="<?php echo esc_attr(get_the_author_meta( 'member_card', $user->ID )); ?>" class="regular-text" /></td>
+            </tr>
+
+            <tr>
+                <th><label for="member_expire_date">Expire Date</label></th>
+                <td><input type="text" name="member_expire_date" value="<?php echo esc_attr(get_the_author_meta( 'member_expire_date', $user->ID )); ?>" class="regular-text" /></td>
+            </tr>
+
+            <tr>
+                <th><label for="member_cvv_code">CVV Code</label></th>
+                <td><input type="text" name="member_cvv_code" value="<?php echo esc_attr(get_the_author_meta( 'member_cvv_code', $user->ID )); ?>" class="regular-text" /></td>
+            </tr>
+        </table>
+    <?php
+}
+
+add_action( 'personal_options_update', 'save_extra_social_links' );
+add_action( 'edit_user_profile_update', 'save_extra_social_links' );
+
+function save_extra_social_links( $user_id )
+{
+    update_user_meta( $user_id,'card_type', sanitize_text_field( $_POST['card_type'] ) );
+    update_user_meta( $user_id,'member_card', sanitize_text_field( $_POST['member_card'] ) );
+    update_user_meta( $user_id,'member_expire_date', sanitize_text_field( $_POST['member_expire_date'] ) );
+    update_user_meta( $user_id,'member_cvv_code', sanitize_text_field( $_POST['member_cvv_code'] ) );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Uses
+    global $current_user;
+    get_currentuserinfo();
+	$userID = $current_user->ID;?>
+	<div class="card_background_<?php echo the_author_meta( 'card_type', $userID );?>">
+		<div class="card_inside">
+			<p class="display_name"><?php echo the_author_meta( 'display_name', $userID ); ?></p>
+			<p class="member_card"><?php echo the_author_meta( 'member_card', $userID ); ?></p>
+			<p class="member_expire_date">Expire : <?php echo the_author_meta( 'member_expire_date', $userID ); ?></p>
+			<p class="member_cvv_code">CVV : <?php echo the_author_meta( 'member_cvv_code', $userID ); ?></p>
+		</div>
+	</div>

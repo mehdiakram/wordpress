@@ -1,0 +1,28 @@
+/* Radio instead of checkboxes for specified taxonomies. */
+function royal_term_radio_checklist( $args ) {
+    if ( ! empty( $args['taxonomy'] ) && $args['taxonomy'] === 'category' /* <== Change to your required taxonomy */ ) {
+        if ( empty( $args['walker'] ) || is_a( $args['walker'], 'Walker' ) ) { // Don't override 3rd party walkers.
+            if ( ! class_exists( 'ROYAL_Walker_Category_Radio_Checklist' ) ) {
+                class ROYAL_Walker_Category_Radio_Checklist extends Walker_Category_Checklist {
+                    function walk( $elements, $max_depth, $args = array() ) {
+                        $output = parent::walk( $elements, $max_depth, $args );
+                        $output = str_replace(
+                            array( 'type="checkbox"', "type='checkbox'" ),
+                            array( 'type="radio"', "type='radio'" ),
+                            $output
+                        );
+
+                        return $output;
+                    }
+                }
+            }
+
+            $args['walker'] = new ROYAL_Walker_Category_Radio_Checklist;
+        }
+    }
+
+    return $args;
+}
+
+add_filter( 'wp_terms_checklist_args', 'royal_term_radio_checklist' );
+/* Radio instead of checkboxes for specified taxonomies. */

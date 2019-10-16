@@ -1,0 +1,16 @@
+function royal_tech_jetpack_single_stats($post) {
+$args = array(
+'days'=>-1,
+'post_id'=>get_the_ID(),
+);
+
+$result = stats_get_csv('postviews', $args);
+
+$views = $result[0]['views'];
+return number_format_i18n($views);
+}
+
+
+
+<?php echo 'views:'.royal_tech_jetpack_single_stats($post->ID). 'times'; ?>
+<?php echo 'পোষ্টটি '.royal_tech_jetpack_single_stats($post->ID). ' বার দেখা হয়েছে'; ?>

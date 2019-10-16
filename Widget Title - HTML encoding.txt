@@ -1,0 +1,29 @@
+Widget Title / HTML encoding
+
+
+=========================
+add_filter('widget_title', 'do_shortcode');
+
+add_shortcode('br', 'wpse_shortcode_br');
+function wpse_shortcode_br( $attr ){ 
+	return '<br />'; 
+}
+
+add_shortcode('span', 'wpse_shortcode_span');
+function wpse_shortcode_span( $attr, $content ){ 
+	return '<span>'. $content . '</span>'; 
+}
+
+add_shortcode('anchor', 'wpse_shortcode_anchor');
+function wpse_shortcode_anchor( $attr, $content ){ 
+	return '<a href="'. ( isset($attr['url']) ? $attr['url'] : '' ) .'">'. $content . '</a>'; 
+}
+
+
+=========================
+Usage:
+As like shortcode usage on post content, use it on the widget title.
+[br]
+[span]something[/span]
+[anchor url="http://domain.com/"]something[/anchor]
+[anchor url=http://domain.com]something[/anchor]

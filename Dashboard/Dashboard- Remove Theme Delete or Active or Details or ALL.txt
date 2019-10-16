@@ -1,0 +1,29 @@
+/*Remove Delete Button from Theme */
+function theme_delete() {
+    echo '<style type="text/css">
+           .submitdelete { display: none !important; }
+           .delete-theme { display: none !important; }
+           .deletion { display: none !important; }
+         </style>';
+}
+add_action('admin_head', 'theme_delete');
+
+
+
+/* Remove Active Button Theme */
+function theme_change() {
+    echo '<style type="text/css">
+           .activatelink { display: none !important; }
+
+         </style>';
+}
+add_action('admin_head', 'theme_change');
+
+
+/* Remove Active/Delete/Live Preview/Details in Theme */
+function theme_links() {
+    echo '<style type="text/css">
+           .action-links { display: none !important; }
+         </style>';
+}
+add_action('admin_head', 'theme_links');

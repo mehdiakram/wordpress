@@ -1,0 +1,38 @@
+/* Add Alerts to a WordPress Dashboard */
+
+function addAlert() { ?>
+<script type="text/javascript">
+$j = jQuery;
+$j().ready(function(){
+	$j('.wrap > h2').parent().prev().after('<div class="update-nag">This is a test alert. Do with it what you want.</div>');
+});
+</script>
+<?php } add_action('admin_head','addAlert');
+
+
+/* How to Add an Alert to the WordPress Dashboard Home Only */
+function addDashboardAlert() { ?>
+<script type="text/javascript">
+$j = jQuery;
+$j().ready(function(){
+	$j('h2:contains("Dashboard")').parent().prev().after('<div class="update-nag">Dear User, Change any data carefully or contact Webmaster.</div>');
+});
+</script>
+<?php 
+} 
+add_action('admin_head','addDashboardAlert');
+
+
+
+/* Add an Alert to the WordPress Dashboard Based on User Level */
+if (current_user_can('administrator')) {
+	function addDashboardAlert() { ?>
+	<script type="text/javascript">
+	$j = jQuery;
+	$j().ready(function(){
+		$j('.wrap > h2').parent().prev().after('<div class="update-nag">Dear User, Change any data carefully or contact Webmaster.</div>');
+	});
+	</script>
+	<?php } add_action('admin_head','addDashboardAlert');
+}
+

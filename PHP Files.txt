@@ -1,0 +1,170 @@
+﻿header.php==================================
+<?php bloginfo('name'); ?> <!-- ব্লগের নাম আনার জন্য -->
+<?php bloginfo('home'); ?> <!-- ব্লগের হোম লিংক আনার জন্য -->
+<?php bloginfo('template_url'); ?>  <!-- ডাইনামিক থিম ডাইরেক্টরী -->
+<?php bloginfo('stylesheet_url'); ?> <!-- ডাইনামিক স্টাইল শীট -->
+<?php echo get_template_directory_uri(); ?> <!-- ডাইনামিক থিম ডাইরেক্টরী -->
+<?php wp_head(); ?> <!-- হেডারের স্ক্রীপ্ট পাওয়ার জন্য -->
+
+
+
+footer.php =================================
+<?php wp_footer(); ?> <!-- হেডারের স্ক্রীপ্ট পাওয়ার জন্য -->
+
+
+ 
+index.php ==================================
+<?php get_header(); ?> <!-- header.php ফাইল কল করার জন্য -->
+<?php get_footer(); ?> <!-- footer.php ফাইল কল করার জন্য -->
+<?php get_sidebar(); ?> <!-- sidebar.php ফাইল কল করার জন্য -->
+<?php get_template_part('file_name'); ?>  <!-- template ফোল্ডার থেকে যে কোন ফাইল কল করার জন্য -->
+
+
+
+single.php =================================
+page.php ===================================
+singular.php ===============================
+<?php if(have_posts()) : ?> <!-- if statemant for post find/search  -->
+<?php while(have_posts()) : the_post(); ?> <!-- while statemant  -->
+	<!-- Post Content here  --> 
+<?php endwhile; ?> <!-- End while statemant  -->
+<?php endif; ?> <!-- End if statemant  -->
+
+
+<!-- Codex : https://codex.wordpress.org/The_Loop -->
+<!-- Custom Loop  -->
+<?php $loop = new WP_Query( array('post_type' => array('post', 'notice'),'showposts' =>10 ) ); ?>
+<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+<a href="<?php the_permalink(); ?> "><?php the_title(); ?></a>
+<?php endwhile; ?>	
+
+
+<!-- thumbnail -->
+<?php
+if ( has_post_thumbnail() ) {
+the_post_thumbnail('post-thumb', array('class' => 'post-image', 'alt' => ''));
+}
+?>	
+
+
+
+<!-- ডাইনামিক টাইটেল -->
+<title>
+<?php
+	global $page, $paged;
+	wp_title( '|', true, 'right' );
+	bloginfo( 'name' );
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) )
+		echo " | $site_description";
+	if ( $paged >= 2 || $page >= 2 )
+		echo ' | ' . sprintf( __( 'Page %s', 'rt' ), max( $paged, $page ) );
+?>
+</title>
+
+
+
+
+
+<?php the_author(); ?> <!-- অথরের নাম -->
+<?php the_author_posts_link(); ?>  <!-- অথরের লিংক -->
+<?php the_permalink(); ?> <!-- show post link --> 
+<?php the_title(); ?> <!-- show post Title --> 
+<?php the_content(); ?> <!-- show post content -->
+<?php edit_post_link(); ?> <!-- Show edit post link -->
+<?php next_posts_link( 'Older Entries' ); ?> <!-- show the next/previous link  -->
+<?php previous_posts_link( 'Newer Entries' ); ?> <!-- show the next/previous link  -->
+<?php comments_popup_link( 'Leave a Comment', '1 Comment', '% Comments' ); ?> <!-- Comments popup link  -->
+<?php bloginfo('name'); ?>  <!-- Code for show blog name-->
+<?php bloginfo('description'); ?> <!-- Discription for blog  -->
+<?php wp_title(); ?> <!-- The title of your blog -->
+
+ 
+
+<?php bloginfo('pingback_url'); ?> <!-- Code for pingback url -->
+<?php bloginfo('version'); ?> <!-- Code for Wordpress version  -->
+<?php bloginfo('atom_url'); ?> <!-- Atom feed link  -->
+<?php bloginfo('rss2_url'); ?> <!-- RSS2  feed link  -->
+<?php bloginfo('url'); ?> <!-- url of your website -->
+<?php bloginfo('html_type'); ?> <!-- declairing for html type code  -->
+<?php bloginfo('charset'); ?> <!-- Code for Charset Set  -->
+
+ 
+
+
+
+<?php the_time('m-d-y') ?> <!-- To get time and date  -->
+<?php comments_popup_link(); ?> <!-- To get pop-up comment's link  -->
+<?php the_category(', ') ?><!-- Show category code   -->
+<?php the_ID(); ?> <!-- ID for post/page -->
+<?php edit_post_link(); ?> <!-- For post link  -->
+<?php get_links_list(); ?> <!-- list for link  -->
+<?php comments_template(); ?> <!-- Call for comment template  -->
+<?php wp_list_pages(); ?> <!-- Site page list   -->
+<?php wp_list_cats(); ?> <!-- site cstegory list  -->
+<?php get_calendar(); ?> <!-- get default calender  -->
+<?php wp_get_archives() ?> <!-- Get archive  -->
+<?php posts_nav_link(); ?> <!-- Navigation link for post  -->
+
+
+
+
+
+
+
+<!-- Sidebar Registration in functions.php
+<?php 
+/* Sidebar */ 
+function royaltech_widgets_init() {
+	register_sidebar( array(
+		'name' => __( 'Main Sidebar Widget Area', 'royaltech' ),
+		'id' => 'main-sidebar',
+		'description' => __( 'The Sidebar widget area', 'royaltech' ),
+		'before_widget' => '<div class="widget-container">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );	
+	
+	register_sidebar( array(
+		'name' => __( 'Teacher Sidebar Widget Area', 'royaltech' ),
+		'id' => 'teacher-sidebar',
+		'description' => __( 'The Sidebar widget area', 'royaltech' ),
+		'before_widget' => '<div class="widget-container">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+	
+}
+add_action( 'widgets_init', 'royaltech_widgets_init' );
+?>
+
+
+
+<!-- Sidebar Call in sidebar.php-->
+<?php if ( ! dynamic_sidebar( 'main-sidebar' ) ) : ?>
+<!-- Else If-->
+<?php endif; // end left widget area ?>
+
+
+
+
+
+
+<!-- Menu Registration in functions.php
+<?php
+/*Menu */
+function royaltech_register_menu() {
+    if (function_exists('register_nav_menu')) {
+		register_nav_menu( 'mainmenu', __( 'Main Menu') );
+        register_nav_menu( 'topmenu', __( 'Top Menu') );
+    }
+}
+add_action('init', 'royaltech_register_menu');
+?>
+
+<!-- Menu Registration in header.php
+<?php wp_nav_menu( array( 'theme_location' => 'mainmenu', 'menu_class' => 'royal-menu', 'menu_id' => 'example') ); ?>
+
+

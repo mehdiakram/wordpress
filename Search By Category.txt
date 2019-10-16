@@ -1,0 +1,24 @@
+//////////// for header.php or searchform.php
+    <form id="searchform" method="get" action="<?php echo home_url(); ?>">
+    <input type="text" name="s" id="s" size="15" />
+    <?php wp_dropdown_categories( 'show_option_none=Select' ); ?>
+    <input type="submit" value="Search" />
+    </form>
+
+
+////////////// function.php
+    add_action( 'pre_get_posts', 'search_by_cat' );
+    function search_by_cat()
+    {
+    if ( is_search() )
+    {
+    $cat = empty( $_GET['cat'] ) ? '' : (int) $_GET['cat'];
+    add_query_arg( 'cat', $cat );
+    }
+    }
+
+
+
+////////////// CSS
+.search_box #searchform select#cat { background: #F8F8F7;  border: 1px solid #E8E8E6;  color: #000;  padding: 4px;}
+.search_box #searchform input[type="submit"] {border: 1px solid #E8E8E6;  color: #666;  padding: 4px; cursor: pointer;}

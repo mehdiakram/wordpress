@@ -1,0 +1,35 @@
+Shotcode
+============================
+[popular_posts]
+[popular_posts cat="news" posts_per_page="8"]
+[popular_posts cat="wordpress" post_type="event" post_status="upcoming"]
+============================
+
+
+
+add_shortcode("popular_posts", "royal_popular_posts");
+function royal_popular_posts($atts) {
+    $args = shortcode_atts(array(
+        'cat' => '',                // Comma separated category IDs or slugs
+        'post_type' => 'post',      // Type of Post
+        'post_status' => 'publish', // Include any post status
+        'posts_per_page' => 5       // Number of popular posts to show
+    ), $atts);
+
+    $args['orderby'] = 'comment_count';
+    $args['order'] = 'DESC';
+
+    $popular_posts = new WP_Query($args);
+    if( $popular_posts->have_posts() ) {
+        echo '<ul class="royal_popular_posts">';
+        while ($popular_posts->have_posts()) {
+            $popular_posts->the_post();
+            echo '<li><a href="'.get_permalink().'" rel="bookmark" title="'.the_title_attribute('echo=0').'">';
+            echo get_the_title().'</a></li>';
+        }
+        echo '</ul>';
+     }
+
+    wp_reset_query();
+}
+

@@ -1,0 +1,36 @@
+<div class="cat_related_post fix">
+<p>এ বিভাগের আরো সংবাদ</p>
+	<ul> 		
+		<?php
+		$related = get_posts( array( 'category__in' => wp_get_post_categories($post->ID), 'numberposts' => 5, 'post__not_in' => array($post->ID) ) );
+		if( $related ) foreach( $related as $post ) {
+		setup_postdata($post); ?>
+
+			<li>
+			<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+			</li>
+  
+		<?php }
+		wp_reset_postdata(); ?>	
+	</ul> 		
+</div>
+
+
+
+<?php
+ 
+$catArgs = array(
+	'category__in'	=> wp_get_post_categories($post->ID),
+	'showposts'	=> 5,//display number of posts
+	'orderby'	=>'rand',//display random posts
+	'post__not_in'	=> array($post->ID)
+ ); 
+ 
+$cat_post_query = new WP_Query($catArgs); 
+ 
+if( $cat_post_query->have_posts() ) { 
+	while ($cat_post_query->have_posts()) : $cat_post_query->the_post(); ?> 
+		<li> <a href="<!?php the_permalink() ?>"> <?php the_title(); ?></a></li> 
+<?php endwhile; 
+ 
+wp_reset_query(); } ?>

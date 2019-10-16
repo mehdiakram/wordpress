@@ -1,0 +1,45 @@
+/* Site Last Updated START */
+function royal_site_last_updated_date($d = '') {
+	$recent = new WP_Query("showposts=1&orderby=modified&post_status=publish");
+	if ( $recent->have_posts() ) {
+		while ( $recent->have_posts() ) {
+			$recent->the_post();
+			$last_update_date = get_the_modified_date($d);
+		}
+		echo $last_update_date;
+	}
+	else
+		echo 'No posts.';
+}
+
+function royal_site_last_updated_time($d = '') {
+	$recent = new WP_Query("showposts=1&orderby=modified&post_status=publish");
+	if ( $recent->have_posts() ) {
+		while ( $recent->have_posts() ) {
+			$recent->the_post();
+			$last_update_time = get_the_modified_time($d);
+		}
+		echo $last_update_time;
+	}
+	else
+		echo 'No posts.';
+}
+/* Site Last Updated END */
+
+
+/* Print
+<?php royal_site_last_updated_date('F j, Y') ?> 
+<?php royal_site_last_updated_time('g:i a'); ?>
+ */
+
+
+
+
+<?php echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' '; ?>
+<?php echo human_time_diff(date_i18n(get_the_time('U'))) . ' '; ?>
+
+
+
+
+
+

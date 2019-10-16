@@ -1,0 +1,49 @@
+<?php query_posts('post_type=post&post_status=publish&posts_per_page=4&paged='. get_query_var('paged')); ?>
+<?php if(have_posts()) : while(have_posts()) : 
+      $i++; if(($i % 2) == 0) : $wp_query->next_post(); else : the_post(); ?>
+
+			<div class="row min-space" data-uk-scrollspy="{cls:'uk-animation-fade', delay:0}">
+				<div class="col-lg-8 right-space xs-right-space">					
+						<?php the_post_thumbnail('blog-image', array('class' => 'post-thumb')); ?>
+						<div class="arrow"></div>					
+				</div>	
+				<div class="col-lg-4 left-space xs-left-space">
+					<div class="blog-details">
+						<h2><?php the_title(); ?></h2>
+						<h3><?php the_time('M d, Y') ?>. Posted by: <span><?php the_author(); ?></span></h3>
+						<p><?php echo excerpt(40); ?> </p>
+						<a class="btn-blog" href="<?php the_permalink(); ?>" target="_blank">Read more...</a>
+					</div>
+				</div>
+			</div>
+
+<?php endif; endwhile; else: ?>
+<!-- alternate content -->
+<?php endif; ?>
+
+<?php $i = 0; rewind_posts(); ?>
+
+<?php if(have_posts()) : while(have_posts()) : 
+      $i++; if(($i % 2) !== 0) : $wp_query->next_post(); else : the_post(); ?>
+
+			<div class="row xs-min-space" data-uk-scrollspy="{cls:'uk-animation-fade', delay:300}">
+				<div class="col-lg-4 right-space xs-right-space">
+					<div class="blog-details">
+						<h2>Lorem ipsum dolor sit amet</h2>
+						<h3> November 12th, 2013. Posted by: <span>John Doe</span></h3>
+						<p>Lorem ipsum dolor sit amet, consectetuer adipis cing elit. Aenean commodo ligula eget dolor.
+						Aenean massa. </p><p>Et magnis dis parturient montes, nascetur ridic ulus mus. Donec quam felis,
+						ultricies nec, pelle ntesque eu pretium quis, sem. </p>
+						<a class="btn-blog" href="blog.html" target="_blank">Read more...</a>
+					</div>
+				</div>
+				<div class="col-lg-8 left-space xs-left-space">					
+						<img src="images/blog/blog-img-02.jpg" alt="placeholder"/>
+						<div class="con-arrow"></div>
+				</div>					
+			</div>
+
+
+<?php endif; endwhile; else: ?>
+<!-- alternate content -->
+<?php endif; ?>

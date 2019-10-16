@@ -1,0 +1,23 @@
+function wpb_recently_registered_users() { 
+global $wpdb;
+$recentusers = '<ul class="recently-user">';
+$usernames = $wpdb->get_results("SELECT display_name, user_url, user_email FROM $wpdb->users ORDER BY ID DESC LIMIT 5");
+foreach ($usernames as $username) {
+if (!$username->user_url) :
+$recentusers .= '<li>' .get_avatar($username->user_email, 45) .$username->display_name."</a></li>";
+else :
+$recentusers .= '<li>' .get_avatar($username->user_email, 45).'<a href="'.$username->user_url.'">'.$username->display_name."</a></li>";
+endif;
+}
+$recentusers .= '</ul>';
+return $recentusers;  
+}
+add_shortcode('wpb_newusers', 'wpb_recently_registered_users');
+
+
+
+
+<!-- Useges ================================================================ -->
+<?php wpb_recently_registered_users(); ?>
+[wpb_newusers]
+

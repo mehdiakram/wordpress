@@ -1,0 +1,30 @@
+<h2>hierarchical terms list (here term name "product_cat")</h2>
+<ul>
+    <?php $hiterms = get_terms("product_cat", array("orderby" => "slug", "parent" => 0)); ?>
+    <?php foreach($hiterms as $key => $hiterm) : ?>
+        <li>
+            <a href="<?php echo get_term_link($hiterm); ?>"><?php echo $hiterm->name; ?></a>
+            <?php $loterms = get_terms("product_cat", array("orderby" => "slug", "parent" => $hiterm->term_id)); ?>
+            <?php if($loterms) : ?>
+                <ul>
+                    <?php foreach($loterms as $key => $loterm) : ?>
+                        <li><a href="<?php echo get_term_link($loterm); ?>"><?php echo $loterm->name; ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+
+<h2>terms list (here term name "product_cat")</h2>
+<?php 
+$terms = get_terms( 'product_cat' );
+if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+echo '<ul>';
+foreach ( $terms as $term ) {
+echo '<li><a href="'. get_term_link( $term ) .'">' . $term->name . '</a></li>';       
+}
+echo '</ul>';
+}
+ ?>

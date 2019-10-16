@@ -1,0 +1,43 @@
+﻿সাইডবার রেজিস্ট্রার করার জন্য
+
+functions.php
+
+==================================
+
+function rasel_widget_areas() {
+
+    register_sidebar( array(
+
+        'name' => __( 'Left Menu', 'rasel' ),
+
+        'id' => 'left_sidebar',
+
+        'before_widget' => '<div class="single_sidebar">',
+
+        'after_widget' => '</div>',
+
+        'before_title' => '<h2>',
+
+        'after_title' => '</h2>',
+
+    ) );
+
+}
+
+add_action('widgets_init', 'rasel_widget_areas');
+
+ 
+
+ 
+
+ 
+
+Sidebar.php
+
+===================================
+
+ 
+
+সাইডবার কল করার জন্য
+
+<?php dynamic_sidebar('left_sidebar'); ?> = এখানে left_sidebar হল সাইড বারের আইডি।

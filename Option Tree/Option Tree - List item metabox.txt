@@ -1,0 +1,27 @@
+array(
+'label'       => 'Team Social',
+'id'          => 'team_links',
+'type'        => 'list-item',
+'section'     => 'social_icons_setting',
+'settings'    => array(
+    array(
+        'id'        => 'social_icon_name',
+        'label'     => 'Social Icon Name',
+        'type'      => 'text'
+    ),
+    array(
+        'id'        => 'social_link_url',
+        'label'     => 'Social Network link',
+        'type'      => 'text'
+    )
+)          
+)
+
+
+//Usages
+<?php 
+    $team_links= get_post_meta($post->ID, 'team_links', true); 
+?>
+<?php foreach( $team_links as $team_link ) {
+    echo '<a tearget="_blank" href="'.$team_link['social_link_url'].'"><i class="fa fa-'.$team_link['social_icon_name'].'"></i></a>';
+} ?>

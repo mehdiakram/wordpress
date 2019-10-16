@@ -1,0 +1,6 @@
+<?php
+$sidebars = wp_get_sidebars_widgets();
+$count = count($sidebars['footer-widget-area']);
+$class_name = 'widgetcount' . $count;
+?>	
+<?php echo $class_name; ?>

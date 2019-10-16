@@ -1,0 +1,13 @@
+function member( $atts, $content = null ) {
+       if  ( is_user_logged_in() && !is_null( $content ) && !is_feed() ) {
+              return $content;
+              return '';
+       } else {
+ 
+       $yonlendir = get_permalink();
+              $form = wp_login_form(array('echo' => false, 'redirect' => $yonlendir ));
+              return $form;
+       }
+}
+ 
+add_shortcode( 'mem', 'member' );

@@ -1,0 +1,108 @@
+Sortcode
+=============================================================
+[paypal_button type="paynow" email="abc@xyz.com" name="Dell Laptop" amount="400"]
+[paypal_button type="donate" email="abc@xyz.com" name="XYZ Inc" amount="50"] // Leave amount for user input
+[paypal_button type="buynow" email="abc@xyz.com" name="Dell Laptop" amount="400" currency="JPY" thankyou_page_url="http://abc.com/thankyou.html"]
+[paypal_button type="cart" email="abc@xyz.com" name="IPhone 5" amount="600" currency="CAD" thankyou_page_url="http://abc.com/thankyou.html"]
+=============================================================
+
+
+
+
+function royal_paypal_button($atts, $content = null) {  
+    extract(shortcode_atts(array(  
+    'type'						=>  '',       // paynow, buynow, donate, cart
+    'email' 					=> 'mehdi@royaltechbd.com',      // your PayPal E-Mail address
+    'name' 						=> '',       // Product or Business Name
+    'id' 						=> '',         // Product Number (optional)
+    'amount' 					=> '',     //Amount to be charged
+    'currency' 					=> 'USD',
+    'tax_rate' 					=> '',
+    'shipping_charges' 			=> '',
+    'btn_size' 					=> 'large',      // large, small
+    'btn_display_cc' 			=> 'yes',  // yes, no
+    'thankyou_page_url'			=> '',   // On payment completion, return to this URL
+    'checkout_logo_url' 		=> '',  // Set logo URL
+    ), $atts));  
+    
+    global $post;
+
+    // Set website's e-mail address if not provided
+    if(empty($email))        $email = get_bloginfo ('admin_email');
+    
+    // Set post name if not provided, Set website name if out of post loop
+    if(empty($name))
+        $name = (!empty($post)) ? $post->post_title : get_bloginfo ('admin_email');
+    
+    if(empty($id))
+        $id = (!empty($post)) ? $post->ID : '';
+    
+    if(strpos(strtolower($type),'pay') !== false){
+        $cmd = '_xclick';
+        $button_subtype = 'service';
+        $btn_text = 'PayNow';    
+        $btn = 'btn_paynow';
+    }
+    elseif(strpos(strtolower($type),'buy') !== false){
+        $cmd = '_xclick';
+        $button_subtype = 'service';
+        $btn_text = 'BuyNow';
+        $btn = 'btn_buynow';
+    }
+    elseif($type=='donation'){
+        $cmd = '_donations';
+        $button_subtype = '';
+        $btn_text = 'Donations';
+        $btn = 'btn_donate';
+    }
+    elseif($type=='cart'){
+        $cmd = '_cart';
+        $add = '1';
+        $button_subtype = 'product';
+        $btn_text = 'ShopCart';
+        $btn = 'btn_cart';
+    }
+
+    if($btn_size=='large' && $btn!='btn_cart') {
+        $btn .= ( (strtolower($btn_display_cc)=='no' || empty($btn_display_cc)  ) ) ? '': 'CC';
+    }
+    else
+        $btn .= '';
+    
+    $btn .= ($btn_size=='large') ? '_LG': '_SM';
+    $bn = 'PP-'.$btn_text.'BF:'.$btn.'.gif:NonHostedGuest';
+    $btn_src = 'https://www.paypalobjects.com/en_US/i/btn/'.$btn.'.gif';
+    
+    $output = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                <input type="hidden" name="cmd" value="'.$cmd.'">
+                <input type="hidden" name="business" value="'.$email.'">
+                <input type="hidden" name="lc" value="US">
+                <input type="hidden" name="item_name" value="'.$name.'">
+                <input type="hidden" name="item_number" value="'.$id.'">
+                <input type="hidden" name="currency_code" value="'.$currency.'">
+                <input type="hidden" name="no_note" value="1">';
+    
+    if(!empty($button_subtype))
+        $output .= '<input type="hidden" name="button_subtype" value="'.$button_subtype.'">';
+    if(!empty($amount))
+        $output .= '<input type="hidden" name="amount" value="'.$amount.'">';
+    if(!empty($tax_rate))
+        $output .= '<input type="hidden" name="tax_rate" value="'.$tax_rate.'">';
+    if(!empty($shipping_charges))
+        $output .= '<input type="hidden" name="shipping" value="'.$shipping_charges.'">';
+    if(!empty($add))
+        $output .= '<input type="hidden" name="add" value="'.$add.'">';
+    if(!empty($checkout_logo_url))
+        $output .= '<input type="hidden" name="cpp_header_image" value="'.$checkout_logo_url.'">';
+    if(!empty($thankyou_page_url))
+        $output .= '<input type="hidden" name="return" value="'.$thankyou_page_url.'">';
+    
+$output .= '<input type="hidden" name="bn" value="'.$bn.'">
+<input type="image" src="'.$btn_src.'" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+';
+    return $output;
+}  
+add_shortcode("paypal_button", "royal_paypal_button");
+

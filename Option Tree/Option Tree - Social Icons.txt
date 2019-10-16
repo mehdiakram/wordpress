@@ -1,0 +1,13 @@
+<ul class="socialicons">
+	<?php
+		if (function_exists('ot_get_option')) {
+			/* get the option array */
+			$links = ot_get_option('social_links', array());
+			if (!empty($links)) {
+				foreach ($links as $link) {
+					echo'<li><a href="' . $link['href'] . '" target="_blank" class="fa fa-' . $link['name'] .'"></a></li>';
+				}
+			}
+		}
+	?>
+</ul>

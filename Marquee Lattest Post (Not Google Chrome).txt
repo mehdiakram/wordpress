@@ -1,0 +1,38 @@
+﻿<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jcarousellite.js" ></script>
+<div class="news-ticker"><STYLE type=text/css> 
+/*******************************************************************
+     ---------------	   LI SCROLER    ---------------
+********************************************************************/
+.news-ticker{ overflow:hidden; float:left; margin:1.5px; width:99.5%; border:solid 1.5px #999; background:#EEE;} /* height:5.5%; */
+.ticker-title { float:left;margin:5px;color:#000080;font-weight:bold;padding-right:10px;background:;}
+/**/.tickercontainer{/**/border:1px solid #;background:#EEE;width:82%;height:29px;margin:0;padding:0;overflow:hidden;}
+.tickercontainer .mask{/**/position:relative;left:0px;overflow:hidden;width:95%; height:22px;float:right;}
+ul.newsticker{/**/position:relative;font-weight:bold; font-size:16px;list-style-type:none;margin:0;padding:0;}
+ul.newsticker li{float:left;/**/margin:0;padding:0;background:#;color:#C00;}
+ul.newsticker a{white-space:nowrap;padding:0;color:#333;font-size:16px ;margin:0 10px 0 0;}
+ul.newsticker span{margin:0 10px 0 0;}ul.ticker a{color:#C00;}ul.ticker a:hover{color:#F00;}
+ul.ticker{height:22px;margin:5px 10px 0 0;padding:0;overflow:hidden;font-size:16px; line-height:20px;}
+ul.ticker li{margin:0;padding:0;overflow:hidden;line-height:23px;}
+</STYLE>
+<script type="text/javascript">
+// JavaScript Document
+jQuery.fn.liScroll=function(settings){settings=jQuery.extend({travelocity:0.05},settings);return this.each(function(){var $strip=jQuery(this);$strip.addClass("newsticker")
+var stripWidth=0;var $mask=$strip.wrap("<div class='mask'></div>");var $tickercontainer=$strip.parent().wrap("<div class='tickercontainer'></div>");var containerWidth=$strip.parent().parent().width();$strip.find("li").each(function(i){stripWidth+=jQuery(this,i).outerWidth(true);});$strip.width(stripWidth);var totalTravel=stripWidth+containerWidth;var defTiming=totalTravel/settings.travelocity;function scrollnews(spazio,tempo){$strip.animate({left:'-='+spazio},tempo,"linear",function(){$strip.css("left",containerWidth);scrollnews(totalTravel,defTiming);});}
+scrollnews(totalTravel,defTiming);$strip.hover(function(){jQuery(this).stop();},function(){var offset=jQuery(this).offset();var residualSpace=offset.left+stripWidth;var residualTime=residualSpace/settings.travelocity;scrollnews(residualSpace,residualTime);});});};
+$(function(){ $("ul.ticker").liScroll(); }); 		
+</script>
+<div class="ticker-title"></div>
+<ul class="ticker">
+<h2>
+<?php
+	$args = array( 'numberposts' => '5' );
+	$recent_posts = wp_get_recent_posts();
+	foreach( $recent_posts as $recent ){
+		echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="Look '.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'</a> </li> ';
+	}
+?> 
+</h2>	 
+	 </ul> 
+	 </div>
+					

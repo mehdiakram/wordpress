@@ -1,0 +1,58 @@
+﻿Post Query in index.php
+
+=====================================
+
+ 
+
+<?php if(have_posts()) : ?>
+
+<?php while (have_posts()) : the_post(); ?>        
+
+ 
+
+<!-- Your Post Query here -->  
+
+ 
+
+<?php endwhile; ?>    
+
+<?php endif; ?>
+
+ 
+
+ 
+
+Pagination in index.php
+
+=====================================
+
+ 
+
+<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts') ); ?></div><div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>') ); ?></div>
+
+ 
+
+ 
+
+Post Information Query in index.php
+
+=====================================
+
+<?php the_title(); ?> = পোস্টের শিরোনাম আনার জন্য
+
+<?php the_permalink(); ?> = পোস্টের লিংক আনার জন্য
+
+<?php the_time('M d, Y') ?> = পোস্টের সময় আনার জন্য
+
+<?php the_excerpt(); ?> = পোস্টের সারাংশ আনার জন্য
+
+<?php the_content(); ?> = পোস্টের পুরো অংশ আনার জন্য
+
+<p>বিভাগ: <?php the_category(', '); ?></p>
+		= পোস্টের বিভাগ আনার জন্য	
+<p>ট্যাগ: <?php the_tags('',', '); ?></p>          = পোস্টের ট্যাগ আনার জন্য
+
+<?php comments_popup_link('No Comment', '1 Comment', '% Comments'); ?> = পোস্টে কমেন্ট সংখ্যা ও তার লিংক আনার জন্য
+
+
+

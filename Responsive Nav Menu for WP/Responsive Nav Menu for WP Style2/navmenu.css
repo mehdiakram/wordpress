@@ -1,0 +1,133 @@
+/*Responsive Nav Menu*/
+.floatleft {float:left}
+.floatright {float:right}
+.mainmenu {
+background: #444444;
+float: left;
+font: bold 12px Arial,Helvetica;
+height: 20px; /*Main Menu Height*/
+margin: 0 auto;
+padding: 12px 0 12px 0;
+width: 100%;
+color:#fff;
+}
+#nav ul {
+display: none;
+z-index:9999;
+list-style:none
+list-style: none outside none;
+margin: 0;
+padding: 0;
+position: absolute;
+width: 165px;
+
+}
+#nav ul a{color:#fff;
+padding: 12px;
+text-decoration: none;
+text-shadow: 0 1px 0 #000000;
+}
+#nav li:hover > ul {display: block;}
+#nav {
+border-radius: 10px; list-style: none; position: relative; display: inline-table;
+z-index: 2;
+}
+#nav:after {content: ""; clear: both; display: block;	}
+#nav li {
+color:#fff;
+float: left;
+height: 26px; /*Fit to main menu*/
+padding-right: 20px;
+padding-top:6px;
+}
+
+#nav li:hover {}
+#nav ul li:hover {}
+#nav li:hover a 
+{
+background: #444444;
+}
+#nav li a 
+{
+border-right: 1px solid #DDDDDD;
+color: #FFFFFF;
+height: 28px;
+padding-right: 20px;
+padding-top: 0px;
+text-decoration: none;
+}
+#nav li a span { text-transform: lowercase; font-style:normal}
+#nav ul {background: #fff; border-radius: 0px; padding: 0; position: absolute; top: 100%;}
+#nav ul li 
+{
+float: none; 
+position: relative;
+border: 0 none;
+display: block;
+padding-top: 0px;
+}
+#nav ul li ul
+{
+float: none; 
+border: 0 none;
+padding-top: 13px;
+}
+		
+#nav ul li a {
+float: left;
+list-style: none outside none;
+padding: 10px 10px 0px 10px;
+width: 100%;
+border-bottom:1px solid #fff;
+
+}	
+#nav ul li a:hover {
+color:#fff;
+background:#DF8259;
+border-bottom:1px solid #fff;
+
+}
+#nav ul ul {position: absolute; left: 100%; top:0;}
+
+
+
+
+
+/* Menu Responsive*/
+
+/* Bigger Screen Layout: 992px.  */
+.selectnav {display:none}
+#nav {display: inline-table;}
+
+
+
+/* Tablet Layout: 768px. */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.selectnav {display:none}
+#nav {display: inline-table;}
+
+}
+
+
+
+/* Mobile Layout: 320px. */
+
+@media only screen and (max-width: 767px) {
+.selectnav {display:block; margin:0 auto}
+#nav {display: none;}
+.mainmenu {float: none;}
+
+}
+
+
+
+/* Wide Mobile Layout: 480px. */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.selectnav {display:block}
+#nav {display: none;}
+
+
+}
+

@@ -1,0 +1,68 @@
+//////////////// Form
+<form id="search" name="searchform" method="get" action="<?php bloginfo("url"); ?>">
+<section id="searchMain">
+<input type="search" id="s" name="s" title="Search Blog" placeholder="Search My Website" />
+<button type="submit" value="search" id="searchsubmit">Search</button>
+</section>
+<section id="searchOptions">
+<input type="radio" value="all" name="post_type" id="searchOptionsAll" checked /> <label for="searchOptionsAll">Search All</label><br />
+<input type="radio" value="post" name="post_type" id="searchOptionsBlog" /> <label for="searchOptionsBlog">Search Blog Only</label><br />
+<input type="radio" value="portfolio" name="post_type" id="searchOptionsPortfolio" /> <label for="searchOptionsPortfolio">Search Portfolio Only</label><br />
+<input type="radio" value="tutorials" name="post_type" id="searchOptionsTutorials" /> <label for="searchOptionsTutorials">Search Tutorials Only</label>
+</section>
+</form>
+
+
+
+
+
+
+
+////////////////// functions
+function SearchFilter($query) {
+if ($query->is_search or $query->is_feed) {
+// Portfolio
+if($_GET['post_type'] == "portfolio") {
+$query->set('post_type', array('artwork', 'websites', 'motion'));
+}
+// Tutorials
+elseif($_GET['post_type'] == "tutorials") {
+$query->set('category_name','tutorials');
+}
+// EVERYTHING! MWAHAHAHAHAHA
+elseif($_GET['post_type'] == "all") {
+$query->set('post_type', array('artwork', 'websites', 'motion', 'post'));
+}
+}
+return $query;
+}
+// This filter will jump into the loop and arrange our results before they're returned
+add_filter('pre_get_posts','SearchFilter');
+
+
+
+
+///////////// jQuery magic
+<section id="searchMain">
+<input type="search" id="s" name="s" title="Search Blog" placeholder="Search My Website" />
+<button type="submit" value="search" id="searchsubmit">Search</button>
+<a href="#" id="searchAnchor">Search Options</a>
+</section>
+
+
+
+
+
+///////// jQuery in footer
+$(function() {
+$("#searchAnchor").click(function(){
+$("#searchOptions").toggle();
+});
+});
+
+
+
+////////// CSS
+#searchOptions {display: none;}
+
+

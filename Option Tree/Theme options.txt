@@ -1,0 +1,22 @@
+=========function.php==============
+/* This code for theme options */
+
+add_filter( 'ot_show_pages', '__return_false' );
+add_filter( 'ot_show_new_layout', '__return_false' );
+add_filter( 'ot_theme_mode', '__return_true' );
+include_once( 'option-tree/ot-loader.php' );
+include_once( 'includes/theme-options.php' );
+
+
+
+===========Single===================
+<?php echo ot_get_option('logo'); ?>
+
+
+
+===========Condition================
+<?php if (ot_get_option('logo')) { ?>
+<?php echo ot_get_option('logo'); ?>
+<?php } else { ?>
+<?php bloginfo('template_url'); ?>/images/logo.png
+<?php } ?>

@@ -1,0 +1,4 @@
+http://docs.woothemes.com/document/third-party-custom-theme-compatibility/
+http://docs.woothemes.com/document/hooks/
+http://docs.woothemes.com/documentation/plugins/woocommerce/woocommerce-codex/snippets/frontend-snippets/
+https://docs.woothemes.com/document/woocommerce-shortcodes/

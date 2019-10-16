@@ -1,0 +1,6 @@
+function RemoveAddMediaButtonsForNonAdmins(){
+if ( !current_user_can( 'manage_options' ) ) {
+remove_action( 'media_buttons', 'media_buttons' );
+}
+}
+add_action('admin_head', 'RemoveAddMediaButtonsForNonAdmins');

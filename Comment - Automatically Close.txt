@@ -1,0 +1,9 @@
+function automatically_close_comments_in() {
+    global $post;
+    if ($post->comment_status == 'open') {
+        $close_comments_days_old = get_option( 'close_comments_days_old' );
+        $expires = strtotime( "{$post->post_date_gmt} GMT" ) +  $close_comments_days_old * DAY_IN_SECONDS;
+        printf( __( '(Automatically close comments in %s. )', 'domain' ),  human_time_diff( $expires ));
+    }
+} 
+add_action( 'comment_form_top', 'automatically_close_comments_in' ); 

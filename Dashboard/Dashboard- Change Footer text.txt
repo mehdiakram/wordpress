@@ -1,0 +1,5 @@
+/* Dashboard footer text */	
+function remove_footer_admin () {
+    echo "Design & Development by <a href=\"http://www.royaltechbd.com\" target=\"_blank\"><strong>Royal Technologies</strong></a>";
+} 
+add_filter('admin_footer_text', 'remove_footer_admin'); 

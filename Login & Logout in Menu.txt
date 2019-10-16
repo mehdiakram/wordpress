@@ -1,0 +1,17 @@
+/* Login & Logout in Menu */
+function add_royal_login_logout_link($items, $args)
+{
+if (is_user_logged_in())
+{
+$newitems = '<li><a title ="Logout" href="'.wp_logout_url('index.php').'">Logout</a></li>';
+$items .=$newitems;
+}
+else
+{
+$newitems = '<li><a title ="Login" href="'.wp_login_url('index.php').'">Login</a></li>';
+$items .=$newitems;
+}
+return $items;
+}
+
+add_filter('wp_nav_menu_items', 'add_royal_login_logout_link', 10, 2);

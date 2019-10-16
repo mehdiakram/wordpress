@@ -1,0 +1,78 @@
+// Added parameters to this function
+function cfdbFilterSaveFile($formData, $formName, $fieldName, $uploaddir)
+{
+    if ($formData && $formName == $formData->title) {
+        // make a copy of data from cf7
+        $formCopy = clone $formData;
+
+        // breakdown parts of uploaded file, to get basename
+        $path = pathinfo($formCopy->uploaded_files[$fieldName]);
+        // directory of the new file
+        $newfile = $uploaddir . $path['basename'];
+
+        // check if a file with the same name exists in the directory
+        if (file_exists($newfile)) {
+            $dupname = true;
+            $i = 2;
+            while ($dupname) {
+                $newpath = pathinfo($newfile);
+                $newfile = $uploaddir . $newpath['filename'] . '-' . $i . '.' . $newpath['extension'];
+                if (file_exists($newfile)) {
+                    $i++;
+                } else {
+                    $dupname = false;
+                }
+            }
+        }
+
+        // make a copy of file to new directory
+        copy($formCopy->uploaded_files[$fieldName], $newfile);
+        // save the path to the copied file to the cfdb database
+        $formCopy->posted_data[$fieldName] = $newfile;
+
+        // delete the original file from $formCopy
+        unset($formCopy->uploaded_files[$fieldName]);
+
+        return $formCopy;
+    }
+    return $formData;
+}
+
+// Wrapper function for form1 to be registered as a filter
+function form1_save_file($formData)
+{
+    // CHANGE THIS: CF7 form name you want to manipulate
+    $formName = 'Order';
+
+    // CHANGE THIS: upload field name on your form
+    $fieldName = 'file';
+
+    // CHANGE THIS: directory where the file will be saved permanently
+    $uploaddir = '/home/clippsa8/public_html/webupload';
+
+    cfdbFilterSaveFile($formData, $formName, $fieldName, $uploaddir);
+
+    // This returns the modified formData from cfdbFilterSaveFile
+    return $formData;
+}
+
+// Wrapper function for form1 to be registered as a filter
+function form2_save_file($formData)
+{
+    // CHANGE THIS: CF7 form name you want to manipulate
+    $formName = 'QuoteRequest';
+
+    // CHANGE THIS: upload field name on your form
+    $fieldName = 'file';
+
+    // CHANGE THIS: directory where the file will be saved permanently
+    $uploaddir = '/home/clippsa8/public_html/webupload';
+
+    cfdbFilterSaveFile($formData, $formName, $fieldName, $uploaddir);
+
+    // This returns the modified formData from cfdbFilterSaveFile
+    return $formData;
+}
+// Register wrapper functions
+add_filter('cfdb_form_data', 'form1_save_file');
+add_filter('cfdb_form_data', 'form2_save_file');

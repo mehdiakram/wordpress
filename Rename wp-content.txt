@@ -1,0 +1,17 @@
+/* For local Host
+if (!defined('WP_CONTENT_DIR')) {
+define('WP_CONTENT_DIR', dirname(__FILE) . '/royalcontent/');
+}
+if (!defined('WP_CONTENT_URL')) {
+define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wordpress/royalcontent');
+}
+*/
+
+
+/* For Web Server
+if (!defined('WP_CONTENT_DIR')) {
+define( 'WP_CONTENT_DIR', '/home/brsd/public_html/content' );
+}
+if (!defined('WP_CONTENT_URL')) {
+define( 'WP_CONTENT_URL', 'http://www.brihattarrajshahisamitydhaka.org/content' );
+}

@@ -1,0 +1,29 @@
+
+/*Remove Delete Button from Plugin */
+function plugin_delete() {
+    echo '<style type="text/css">
+           .delete { display: none !important; }
+         </style>';
+}
+add_action('admin_head', 'plugin_delete');
+
+
+
+/* Remove Active Button Plugin */
+function plugin_deactivate() {
+    echo '<style type="text/css">
+           .deactivate { display: none !important; }
+         </style>';
+}
+add_action('admin_head', 'plugin_deactivate');
+
+
+/* Remove Active/Deactivate/Edit in Plugin */
+function plugin_links() {
+    echo '<style type="text/css">
+           .row-actions-visible { display: none !important; }
+         </style>';
+}
+add_action('admin_head', 'plugin_links'); 
+ 
+ 

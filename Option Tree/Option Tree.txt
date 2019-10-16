@@ -1,0 +1,36 @@
+function.php================================================
+
+
+add_filter( 'ot_show_pages', '__return_false' );
+add_filter( 'ot_show_new_layout', '__return_false' );
+add_filter( 'ot_theme_mode', '__return_true' );
+include_once( 'option-tree/ot-loader.php' );
+include_once( 'includes/theme-options.php' );
+
+
+Uses========================
+
+<?php if (ot_get_option('favicon')) { ?>
+<?php echo ot_get_option('favicon'); ?>
+<?php } else { ?>
+ELSE DATA
+<?php } ?>
+
+
+
+
+https://www.sitepoint.com/optiontree-advanced-options/
+
+<ul class="social_nav">
+<?php
+	if (function_exists('ot_get_option')) {
+		/* get the option array */
+		$links = ot_get_option('social_links', array());
+		if (!empty($links)) {
+			foreach ($links as $link) {
+				echo '<li class="' . $link['name'] .'"><a target="_blank" href="' . $link['href'] . '"/>  '. $link['title'] . ' </a></li>';
+			}
+		}
+	}
+?>
+</ul>

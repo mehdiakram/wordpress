@@ -1,0 +1,10 @@
+/* Remove Menu or Submenu from Dashboard */
+function royal_remove_menu_elements(){
+  remove_submenu_page( 'themes.php', 'theme-editor.php' );
+  remove_submenu_page( 'themes.php', 'customize.php' );
+  remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
+  remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=post_tag' );
+  
+  remove_menu_page( 'edit-comments.php' );
+}
+add_action('admin_init', 'royal_remove_menu_elements', 102);

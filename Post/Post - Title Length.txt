@@ -1,0 +1,8 @@
+/* Title Length Fix */
+
+function bawdp_dont_publish()
+{    global $post;    if ( strlen( $post->title ) < 3 ) 
+{        
+wp_die( 'The title of your post have to be 10 or more !' );    }
+}
+add_action( 'pre_post_update', 'bawdp_dont_publish' );

@@ -1,0 +1,22 @@
+/*Titles to tags when publish*/
+function TagsFromTitleWhenPublishPost($post_ID) {
+	$gpt = get_post($post_ID);
+	$posttitle = $gpt->post_title;
+	$posttitle = strtolower($posttitle);
+	if(get_the_tags($post_ID)){
+		foreach(get_the_tags($post_ID) as $tag) {
+			$tag_name = $tag->name;
+			$tag_name  = strtolower($tag_name);
+			$posttitle = str_replace($tag_name, "", $posttitle);
+		}
+	}
+	$splittotags = explode(" ", $posttitle);
+	foreach ($splittotags as $atag){
+		$atag = str_replace(" ", "", $atag);
+		if($atag !=NULL){
+			wp_set_object_terms($post_ID, $atag, 'post_tag', true );
+		}
+	}
+}
+add_action('publish_post', 'TagsFromTitleWhenPublishPost');
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
