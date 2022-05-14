@@ -1,0 +1,5 @@
+update 
+wc_postmeta 
+set 
+meta_value = NULL 
+where meta_key='_price'

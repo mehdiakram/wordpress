@@ -1,0 +1,19 @@
+add_filter( 'woocommerce_product_add_to_cart_text', 'product_cat_add_to_cart_button_text', 20, 1 );
+function product_cat_add_to_cart_button_text( $text ) {
+    // Only for a specific product category
+    if( has_term( array('preorder'), 'product_cat' ) )
+        $text = __( 'Preorder', 'woocommerce' );
+
+    return $text;
+}
+
+
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'product_cat_single_add_to_cart_button_text', 20, 1 );
+function product_cat_single_add_to_cart_button_text( $text ) {
+    // Only for a specific product category
+    if( has_term( array('preorder'), 'product_cat' ) )
+        $text = __( 'Preorder', 'woocommerce' );
+
+    return $text;
+}
+Co
